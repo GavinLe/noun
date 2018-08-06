@@ -1,0 +1,42 @@
+/**
+ * Created by gavin on 17/12/25.
+ */
+@import "var";
+
+/* 改变主题色变量 */
+$--color-primary: #ffad4a;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "../../../node_modules/element-ui/packages/theme-chalk/src/index";
+
+// 全局table td padding 去掉，避免内容太高
+.el-table td {
+  padding: 0;
+}
+.el-form .el-form-item {margin-bottom: 20px;}
+.el-table .el-table__header th .cell {
+  font-size: 14px;
+  color: $theme-font-color
+}
+// 全局定义弹出框显示
+.ysd-autocomplete {
+  li {
+    line-height: normal;
+    padding: 7px;
+
+    .name {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .desc {
+      font-size: 12px;
+      color: #b4b4b4;
+    }
+
+    .highlighted .desc {
+      color: #ddd;
+    }
+  }
+}

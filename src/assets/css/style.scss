@@ -1,0 +1,79 @@
+@charset "UTF-8";
+html{  height: 100%;  }
+body{  height: 100%;  margin: 0;  font-size: 14px;  }
+h4, h5, h6, h1, h2, h3 {margin-top: 0;}
+ul, ol, li {margin: 0; padding:0}
+p {margin: 0;}
+html,body{font-family:"微软雅黑", "sans-serif";}
+input[type="radio"], input[type="checkbox"] {  outline:0 !important;  }
+a{  transition:0.5s all;  text-decoration: none !important;  cursor: pointer;  color: #ffad4a;  background-color: transparent;  }
+a:hover, a:focus {  color: #ffe37e;  outline: none;  }
+*, *:after, *::before {  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;  }
+label {cursor: pointer;}
+// ::-webkit-scrollbar{  display:none;  }
+
+
+body {
+  margin: 0;
+  padding: 0;
+  /*background: url(assets/bg1.jpg) center !important;
+      background-size: cover;*/
+  // background: #1F2D3D;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.el-submenu [class^=fa],.el-submenu [class^=el-icon-] {
+  vertical-align: baseline;
+  margin-right: 0;
+}
+
+.el-menu-item [class^=fa],.el-submenu [class^=el-icon-] {
+  vertical-align: baseline;
+  margin-right: 0;
+}
+
+.toolbar {
+  background: #f2f2f2;
+  padding: 10px;
+  margin:10px 0;
+  .el-form-item {
+    margin-bottom: 10px;
+  }
+}
+.ysd-table-mh40 tbody .cell {
+  padding: 10px 15px;
+  .el-button--text { padding: 0; }
+}
+
+.ysd-table-pd5 tbody .cell {
+  padding: 5px;
+  .el-button--text { padding: 0; }
+}
+
+.clear{zoom:1;}
+.clear:after{content: ''; display: block; clear: both;}
+
+.ysd-cursor {cursor:pointer;}
+.ysd-operate {margin-bottom: 15px;}
+
+
+
+/** 全局 toolbar 重写用于查询 */
+.toolbar {
+  margin: 0 0 15px 0;
+}
+
+
+.el-table {
+  .warning-row {
+    background: #E6A23C;
+  }
+  .success-row {
+    background: #67C23A;
+  }
+  .danger-row {
+    background: #FFCECC;
+  }
+}
