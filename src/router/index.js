@@ -26,9 +26,9 @@ const routeFunc = (to, from, next) => {
   } else {
     if (isLogin) { // 已登录
       if (to.path === '/login') {
-        return next({path: '/home'})
+        return next({path: '/home'});
       } else {
-        return next({path: '/home'})
+        return next({path: '/home'});
       }
     } else { // 未登录
       if (to.path != '/login') {

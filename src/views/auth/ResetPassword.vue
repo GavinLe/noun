@@ -162,7 +162,7 @@
       display: inline-block;
       width: 300px;
       height: 160px;
-      background: url("../../assets/logo.png") no-repeat fixed 50px 30px;
+      /*background: url("../../assets/logo.png") no-repeat fixed 50px 30px;*/
     }
     .btn {
       display: inline-block;

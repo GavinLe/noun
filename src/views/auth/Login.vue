@@ -79,7 +79,7 @@
     display: inline-block;
     width: 300px;
     height: 160px;
-    background: url("../../assets/logo.png") no-repeat fixed 50px 30px;
+    /*background: url("../../assets/logo.png") no-repeat fixed 50px 30px;*/
   }
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
