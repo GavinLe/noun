@@ -1,6 +1,6 @@
 const axiosSource = require('axios');
 if (!global.conf) {
-  throw new Error('Global conf is not defined！')
+  throw new Error('Global conf is not defined！');
 }
 const config = global.conf;
 
@@ -11,7 +11,7 @@ const https = require('https');
 const util = require('util');
 
 if (!global.logger) {
-  throw new Error('Global logger is not defined！')
+  throw new Error('Global logger is not defined！');
 }
 
 // 保持长连接，提高性能
@@ -61,7 +61,7 @@ class ServiceClient {
 
   _wrap_options(options) {
     var opt = Object.assign({}, this.defaultOptions, options);
-    if(opt.url.indexOf('/') == 0){
+    if (opt.url.indexOf('/') == 0) {
       opt.url = options.app_host || config.app_host + opt.url;
     }
     return opt;
@@ -74,21 +74,14 @@ class ServiceClient {
     }
     const req = options.request || (options.response ? options.response.req : null);
     if (req) {
-      let currentUser = req.cuser || (req.session && req.session.currentUser);
-      if (currentUser) {
-        options.headers['X-YS-OPEN-ID'] = currentUser.id || '';
-      }
-      if (options.transferCookie && req.headers['cookie']) {
-        options.headers['Cookie'] = req.headers['cookie'];
-      }
       // wrap jwt token AUTH_TOKEN
-      if(req.cookies['AUTH_TOKEN']){
+      if (req.cookies['AUTH_TOKEN']) {
         options.headers['Authorization'] = `bearer ${req.cookies['AUTH_TOKEN']}`;
-      } else if(req.headers['Authorization']) {
+      } else if (req.headers['Authorization']) {
         options.headers['Authorization'] = req.headers['Authorization'];
       }
     }
-    options.credentials = 'same-origin';  // 保证传送cookie
+    options.credentials = 'same-origin'; // 保证传送cookie
     return options;
   }
 
@@ -114,19 +107,7 @@ class ServiceClient {
           this._wrap_resp_cookie(rsp, options);
           if (rsp.status === 200) {
             logger.debug('http response url: %s, params: %j, data: %j, result: %j', options.url, options.params, options.data, rsp.data);
-            // 后端过来的数据结构如果已经是json result 封装的结构，标记是否需要展平，只显示data
-            const isFlat = (options.flat == null || options.flat == undefined) ? true : options.flat;
-            if(isFlat) {
-              if(rsp.data && !rsp.data.errcode) {
-                resolve(rsp.data, rsp);
-              } else if(rsp.data && rsp.data.errcode) {
-                reject(rsp.data, rsp)
-              } else {
-                reject('unknown data format', rsp)
-              }
-            } else {
-              resolve(rsp)
-            }
+            resolve(rsp);
           } else {
             reject('rsp http status error', rsp);
           }
@@ -139,13 +120,13 @@ class ServiceClient {
             return reject(e.response.data);
           }
           logger.error('failed to post request url: %s, params: %j, data: %j, error: %s', options.url, options.params, options.data, error);
-          if(e && e.message) {
-            if(e.response && e.response.data) {
+          if (e && e.message) {
+            if (e.response && e.response.data) {
               e.message = e.message + ',' + JSON.stringify(e.response.data);
             }
           }
           reject(e);
-        })
+        });
     });
   };
 

@@ -21,11 +21,11 @@ const conf = {
   cluster_workers: 1, // NodeJs Cluster 进程数设置, 可是任意小于cpu数量的值, 0 - 代表基于系统cpu数量自动计算
 
   session: {
-    cookieName: 'nsession',
-    secret: 'VAdminTsf4grt4drgsdFSD4e512',
+    cookieName: 'nounsession',
+    secret: 'AdminTsf4grt4drgsdFSD4e512',
     isRedisStore: true,
     redisOption: {
-      host: '192.168.0.233',
+      host: '127.0.0.1',
       port: 6379,
       ttl: 30
     },
@@ -33,7 +33,7 @@ const conf = {
   },
 
   redis: {
-    host: '192.168.0.233',
+    host: '127.0.0.1',
     port: 6379,
     retryStrategy: function (times) {
       var delay = Math.min(times * 5, 2000)

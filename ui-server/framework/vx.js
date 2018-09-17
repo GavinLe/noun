@@ -2,7 +2,7 @@
  * Created by gavin on 18/8/24.
  */
 ;(function() {
-  var vx = { version: '1.0'};
+  var vx = { version: '1.0' };
 
   vx.wrap = fn => (...args) => fn(...args).catch(args[2]);
 

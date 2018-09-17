@@ -4,7 +4,7 @@
       <span class="login"></span>
     </div>
     <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-      <h3 class="title">系统登录</h3>
+      <h3 class="title">登录</h3>
       <el-form-item prop="account">
         <el-input type="text" v-model="loginForm.account" auto-complete="new-password" placeholder="账号" @keyup.native.enter="enterPassword"></el-input>
       </el-form-item>
@@ -12,9 +12,9 @@
         <!--auto-complete="new-password"-->
         <el-input type="password" ref="password" v-model="loginForm.checkPass" placeholder="密码" @keyup.native.enter="doLogin"></el-input>
       </el-form-item>
-      <el-form-item class="item-bottom">
+      <!-- <el-form-item class="item-bottom">
         <el-checkbox v-model="checked" checked>记住密码</el-checkbox>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" style="width:100%;" ref="btSubmit" :loading="logining"  @click="doLogin">登录</el-button>
       </el-form-item>

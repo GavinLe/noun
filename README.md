@@ -1,8 +1,14 @@
-# 
+#
 
-> 
+>
 
 ## Build Setup
+
+### 启动 本地 redis 服务
+redis-server
+
+### 启动MongoDB 服务
+sudo mongod
 
 ``` bash
 # install dependencies

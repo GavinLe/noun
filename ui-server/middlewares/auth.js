@@ -1,35 +1,38 @@
 /**
  * Created by gavin on 17/12/20.
  */
-
-const TokenService = require('../yst-express').$services.Token;
-var constants = require('../yst-express').$lookups.constants;
-
+const TokenService = require('../framework').$token;
+const constants = require('../lookups').$constants;
 const _ = require('underscore');
+
+const noAuth = ['/ping', '/login']; // 无需权限的白名单
 
 exports.preauth = function() {
   return async function(req, res, next) {
-    if (req.cuser) {
+    if (req.cuser || noAuth.includes(req.url)) {
       return next();
     }
-
-    const jwt = req.cookies[constants.JWT_COOKIE_KEY];
-    if (!_.isEmpty(jwt)) {
-      try {
-        const dToken = await TokenService.validateToken(jwt);
+    try {
+      let jwt = req.cookies[constants.JWT_COOKIE_KEY];
+      if (!_.isEmpty(jwt)) {
+        let dToken = await TokenService.validateToken(jwt);
         if (dToken) {
           req.cuser = {
             id: dToken.id,
             name: dToken.user_name,
             roles: dToken.authorities
           };
+          return next();
+        } else {
+          return res.json_error('无效的访问令牌', 990);
         }
-      } catch (e) {
+      } else {
         return res.json_error('无效的访问令牌', 990);
       }
+    } catch (e) {
+      return res.json_error('访问令牌不存在！', 990);
     }
-    return next();
-  };
+  }
 };
 
 exports.userRequired = function(req, res, next) {
@@ -51,7 +54,7 @@ const ACL = {
 
 const _getUserRole = function(req) {
   // 获取用户等级
-  const cuser = req.cuser; // req.session.currentUser;
+  const cuser = req.cuser;
 
   let uRole = ACL.GUEST;
   if (cuser) {

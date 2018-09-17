@@ -4,7 +4,7 @@
 
 const path = require('path');
 
-var proxyNodeHost = 'http://127.0.0.1:3501';
+var proxyNodeHost = 'http://127.0.0.1:3000';
 
 module.exports = {
   dev: {
@@ -13,8 +13,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/nsp/api': proxyNodeHost,
-      '/uac': proxyNodeHost
+      '/noun/api': proxyNodeHost
     },
 
     // Various Dev Server settings

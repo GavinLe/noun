@@ -19,14 +19,15 @@ const errGlobal = (opt = {view: 'errors/global'}) => {
 
     // respond with json
     if (req.xhr) {
+      var rst;
       if (err && err.code === 'EBADCSRFTOKEN') {
-        var rst = new JsonResultFailed(err);
+        rst = new JsonResultFailed(err);
         rst.errcode = 990;
         return res.json(rst);
         // res.json_error(err, 990);
       } else {
         var errcode = err.hasOwnProperty('errcode') ? err.errcode : -1;
-        var rst = new JsonResultFailed(err);
+        rst = new JsonResultFailed(err);
         rst.errcode = errcode;
         res.status(errcode.toString() === '-1' ? 500 : 200);
         res.json(rst);
@@ -41,7 +42,7 @@ const errGlobal = (opt = {view: 'errors/global'}) => {
     } else {
       res.type('txt').send(err);
     }
-  }
+  };
 };
 
 const err404 = (opt = {view: 'errors/404'}) => {
@@ -50,7 +51,6 @@ const err404 = (opt = {view: 'errors/404'}) => {
 
     // respond with html page
     if (req.accepts('html')) {
-      // res.render_tpl('errors/404', {title: 'Page Not Found'});
       res.render(opt.view, {title: 'Page Not Found'});
       return;
     }
@@ -63,8 +63,8 @@ const err404 = (opt = {view: 'errors/404'}) => {
 
     // default to plain-text. send()
     res.type('txt').send('Not found');
-  }
-}
+  };
+};
 
 exports.global = errGlobal;
 exports.pageNotFound = err404;

@@ -6,8 +6,9 @@ const bodyParser = require('body-parser');
 
 const mwFileDownload = require('../middlewares/file.download');
 const {getGoTo, postGoTo, postQueryGoTo, simpleGoTo} = require('../middlewares/proxy');
-const {ACL, accessLevel} = require('../middlewares/auth');
-const proxyAuth = require('./proxy-auth');
+const {ACL, accessLevel, preauth} = require('../middlewares/auth');
+
+const vcAuth = require('../controllers/auth.js');
 
 /**
  * 导出nsp api 相关路由
@@ -16,13 +17,13 @@ const proxyAuth = require('./proxy-auth');
 module.exports = function (app) {
   const bodyParserJson = bodyParser.json({limit: '1000kb'});
   const bodyParserUrlEncoded = bodyParser.urlencoded({extended: false, limit: '1000kb'});
-
-  //api
-  app.use('/api', bodyParserJson, bodyParserUrlEncoded, preauth(), apiRouter());
+  // api
+  app.use('/noun/api', bodyParserJson, bodyParserUrlEncoded, preauth(), apiRouter());
 };
 
 const apiRouter = function () {
   const router = express.Router();
-  router.get('/ping', vcUser.apis.ping); // 测试接口是否通
+  router.get('/ping', vcAuth.apis.ping); // 测试接口是否通
+  router.post('/login', vcAuth.apis.login); // 登录
   return router;
 };

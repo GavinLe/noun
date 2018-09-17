@@ -10,7 +10,7 @@ var promisifyVerify = $vx.promisify(jwt.verify);
 
 var TokenService = {
   createToken: function(object, expiresIn = config.jwt.expiresIn, secret = config.jwt.secret) {
-    if(object.exp && expiresIn){
+    if (object.exp && expiresIn) {
       delete object.exp;
     }
     return jwt.sign(object, secret, { expiresIn });
@@ -19,7 +19,7 @@ var TokenService = {
   validateToken: function(token, secret = config.jwt.secret) {
     return promisifyVerify(token, secret);
   }
-}
+};
 
 module.exports = TokenService;
 

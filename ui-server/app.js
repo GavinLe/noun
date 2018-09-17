@@ -10,11 +10,10 @@ const jwt         = require('jsonwebtoken'); // 使用jwt签名
 const mwError     = require('./middlewares/error');
 const fileUpload  = require('express-fileupload');
 const routes      = require('./routes');
-const logger = require('./framework').$logger;
+const logger      = require('./framework').$logger;
 
 const conf = global.conf || require('./conf');
 global.logger = logger.build(conf.log_setting.default);
-
 
 let setupApp = function(conf) {
   conf = conf || require('./conf');
@@ -47,7 +46,7 @@ let setupApp = function(conf) {
   }
 
   // 设置favicon 和 静态文件路由， TODO: 为性能考虑，要考虑次路由放置的先后问题
-  // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'public')));
 
   // 设置session处理的中间件
@@ -124,4 +123,3 @@ const startServer = function(app) {
 };
 
 startServer(setupApp());
-
