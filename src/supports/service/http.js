@@ -72,7 +72,7 @@ class Http {
   async request(options) {
     options = options || {};
     options.retrieveCount = (options.retrieveCount || 0) + 1;
-    options.showLoading = (options.showLoading == null) ? true:options.showLoading;
+    options.showLoading = (options.showLoading == null) ? true : options.showLoading;
     options.skipToken = options.skipToken || false;
     options.skipUser = options.skipUser || false;
     options = $httpHelper.setDefaultHeaders(options);

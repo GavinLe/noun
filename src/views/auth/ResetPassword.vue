@@ -28,132 +28,132 @@
 </template>
 
 <script>
-  import userApi from 'src/api/user';
-  import { mapGetters, mapActions } from 'vuex';
-  export default {
-    components: {},
-    computed: {
-      ...mapGetters({
-        userInfo: 'getUserInfo'
-      })
-    },
-    data () {
-      let validateOldPass = (rule, value, callback) => {
-        if (this.resetPass === 'new' && value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          if (this.resetFrom.password !== '') {
-            this.$refs.resetFrom.validateField('password');
-          }
-          callback();
+import userApi from 'src/api/user';
+import { mapGetters, mapActions } from 'vuex';
+export default {
+  components: {},
+  computed: {
+    ...mapGetters({
+      userInfo: 'getUserInfo'
+    })
+  },
+  data () {
+    let validateOldPass = (rule, value, callback) => {
+      if (this.resetPass === 'new' && value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.resetFrom.password !== '') {
+          this.$refs.resetFrom.validateField('password');
         }
-      };
-      let validatePass = (rule, value, callback) => {
-        let regex = /^((?=.*[a-z])|(?=.*[A-Z]))(?=.*\d)[^]{8,16}$/; // 密码必须同时含有数字和字母，且长度要在8-16位之间。
-        if (value === '') {
-          callback(new Error('请输入新密码'));
-        } else if (!regex.test(value)) {
-          callback(new Error('密码必须同时含有数字和字母，且长度要在8-16位之间。'));
-        } else {
-          if (this.resetFrom.checkPassword !== '') {
-            this.$refs.resetFrom.validateField('checkPassword');
-          }
-          callback();
-        }
-      };
-      let validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.resetFrom.password) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
-      return {
-        resetPass: 'new',
-        resetFrom: {
-          oldPassword: '',
-          password: '',
-          checkPassword: ''
-        },
-        resetFromRules: {
-          oldPassword: [
-            { validator: validateOldPass, trigger: 'blur' }
-          ],
-          password: [
-            { validator: validatePass, trigger: 'change' }
-          ],
-          checkPassword: [
-            { validator: validatePass2, trigger: 'change' }
-          ]
-        }
-      };
-    },
-    methods: {
-      ...mapActions(['signOut']),
-      setFocus: function (refStr, isSelect, input) {
-        let ref = this.$refs[refStr];
-        setTimeout(() => {
-          ref && ref.focus();
-          if (input) {
-            isSelect && ref.$refs['input'].select();
-          } else {
-            isSelect && ref.select();
-          }
-        }, 100);
-      },
-      cancel: function () {
-        this.$refs.resetFrom.resetFields();
-        this.$emit('submitDone', {status: 0, message: '取消'});
-      },
-      submit: function () {
-        let _self = this;
-        this.$refs['resetFrom'].validate((valid) => {
-          if (valid) {
-            let params = {
-              userId: _self.userInfo.id,
-              account: _self.userInfo.account,
-              password: _self.resetFrom.password,
-              checkPassword: _self.resetFrom.checkPassword
-            };
-            if (_self.resetPass === 'new') {
-              params['oldPassword'] = _self.resetFrom.oldPassword;
-              if (_self.resetFrom.oldPassword === _self.resetFrom.password) {
-                _self.$message.error('新密码和旧密码不能相同');
-                return;
-              }
-            }
-            userApi.resetPwd(params).then((res) => {
-              this.$refs.resetFrom.resetFields();
-              _self.$message.success('新密码设置成功，请重新登录！');
-              _self.signOut().then(() => {
-                _self.$router.push({path: '/login'});
-              });
-            }).catch((e) => {
-              _self.$message.error(e.message);
-            });
-          } else {
-            return false;
-          }
-        });
-      },
-      logout: function () {
-        var _this = this;
-        this.$confirm('确认退出吗?', '提示', {
-          // type: 'warning'
-        }).then(() => {
-          this.signOut().then(() => {
-            _this.$router.push({path: '/login'});
-          });
-        }).catch(() => {
-
-        });
+        callback();
       }
+    };
+    let validatePass = (rule, value, callback) => {
+      let regex = /^((?=.*[a-z])|(?=.*[A-Z]))(?=.*\d)[^]{8,16}$/; // 密码必须同时含有数字和字母，且长度要在8-16位之间。
+      if (value === '') {
+        callback(new Error('请输入新密码'));
+      } else if (!regex.test(value)) {
+        callback(new Error('密码必须同时含有数字和字母，且长度要在8-16位之间。'));
+      } else {
+        if (this.resetFrom.checkPassword !== '') {
+          this.$refs.resetFrom.validateField('checkPassword');
+        }
+        callback();
+      }
+    };
+    let validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.resetFrom.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
+    return {
+      resetPass: 'new',
+      resetFrom: {
+        oldPassword: '',
+        password: '',
+        checkPassword: ''
+      },
+      resetFromRules: {
+        oldPassword: [
+          { validator: validateOldPass, trigger: 'blur' }
+        ],
+        password: [
+          { validator: validatePass, trigger: 'change' }
+        ],
+        checkPassword: [
+          { validator: validatePass2, trigger: 'change' }
+        ]
+      }
+    };
+  },
+  methods: {
+    ...mapActions(['signOut']),
+    setFocus: function (refStr, isSelect, input) {
+      let ref = this.$refs[refStr];
+      setTimeout(() => {
+        ref && ref.focus();
+        if (input) {
+          isSelect && ref.$refs['input'].select();
+        } else {
+          isSelect && ref.select();
+        }
+      }, 100);
     },
-    mounted() {
+    cancel: function () {
+      this.$refs.resetFrom.resetFields();
+      this.$emit('submitDone', {status: 0, message: '取消'});
+    },
+    submit: function () {
+      let _self = this;
+      this.$refs['resetFrom'].validate((valid) => {
+        if (valid) {
+          let params = {
+            userId: _self.userInfo.id,
+            account: _self.userInfo.account,
+            password: _self.resetFrom.password,
+            checkPassword: _self.resetFrom.checkPassword
+          };
+          if (_self.resetPass === 'new') {
+            params['oldPassword'] = _self.resetFrom.oldPassword;
+            if (_self.resetFrom.oldPassword === _self.resetFrom.password) {
+              _self.$message.error('新密码和旧密码不能相同');
+              return;
+            }
+          }
+          userApi.resetPwd(params).then((res) => {
+            this.$refs.resetFrom.resetFields();
+            _self.$message.success('新密码设置成功，请重新登录！');
+            _self.signOut().then(() => {
+              _self.$router.push({path: '/login'});
+            });
+          }).catch((e) => {
+            _self.$message.error(e.message);
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    logout: function () {
+      var _this = this;
+      this.$confirm('确认退出吗?', '提示', {
+        // type: 'warning'
+      }).then(() => {
+        this.signOut().then(() => {
+          _this.$router.push({path: '/login'});
+        });
+      }).catch(() => {
+
+      });
     }
-  };
+  },
+  mounted() {
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -5,20 +5,20 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-  export default {
-    data() {
-        return {
-        };
-    },
-    computed: {
-    },
-    methods: {
-    },
-    created () {
-    }
-  };
+export default {
+  data() {
+    return {
+    };
+  },
+  computed: {
+  },
+  methods: {
+  },
+  created () {
+  }
+};
 
 </script>
 

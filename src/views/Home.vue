@@ -6,22 +6,22 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  export default {
-    components: {},
-    data () {
-      return {
-        message: ''
-      };
-    },
-    methods: {
-    },
-    created() {
-    },
-    mounted() {
+import { mapGetters } from 'vuex';
+export default {
+  components: {},
+  data () {
+    return {
+      message: ''
+    };
+  },
+  methods: {
+  },
+  created() {
+  },
+  mounted() {
 
-    }
-  };
+  }
+};
 </script>
 
 <style lang="scss">

@@ -24,52 +24,52 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-  export default {
-    data() {
-      return {
-        logining: false,
-        loginForm: {
-          account: '',
-          checkPass: ''
-        },
-        loginRules: {
-          account: [
-            { required: true, message: '请输入账号', trigger: 'blur' }
-          ],
-          checkPass: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
-        },
-        checked: true
-      };
-    },
-    methods: {
-      ...mapActions(['signIn']),
-      async doLogin(ev) {
-        let isPass = await this.$refs.loginForm.validate();
-        if (!isPass) {
-          return false;
-        }
-        try {
-          this.logining = true;
-          let loginInfo = {username: this.loginForm.account, password: this.loginForm.checkPass};
-          let u = await this.signIn(loginInfo);
-          this.logining = false;
-          if (this.$route.query && this.$route.query.next) {
-            this.$router.push(this.$route.query.next);
-          } else {
-            this.$router.push(this.$route.query.redirect || '/home');
-          }
-        } catch (e) {
-          this.logining = false;
-          this.$message.error(e.message);
-        }
+import { mapActions } from 'vuex';
+export default {
+  data() {
+    return {
+      logining: false,
+      loginForm: {
+        account: '',
+        checkPass: ''
+      },
+      loginRules: {
+        account: [
+          { required: true, message: '请输入账号', trigger: 'blur' }
+        ],
+        checkPass: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
+      },
+      checked: true
+    };
+  },
+  methods: {
+    ...mapActions(['signIn']),
+    async doLogin(ev) {
+      let isPass = await this.$refs.loginForm.validate();
+      if (!isPass) {
+        return false;
       }
-    },
-    mounted () {
+      try {
+        this.logining = true;
+        let loginInfo = {username: this.loginForm.account, password: this.loginForm.checkPass};
+        let u = await this.signIn(loginInfo);
+        this.logining = false;
+        if (this.$route.query && this.$route.query.next) {
+          this.$router.push(this.$route.query.next);
+        } else {
+          this.$router.push(this.$route.query.redirect || '/home');
+        }
+      } catch (e) {
+        this.logining = false;
+        this.$message.error(e.message);
+      }
     }
-  };
+  },
+  mounted () {
+  }
+};
 
 </script>
 

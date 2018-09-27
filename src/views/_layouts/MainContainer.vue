@@ -19,34 +19,33 @@
 </template>
 
 <script>
+import HeaderBar from './HeaderBar';
+import AsideBar from './AsideBar';
+import FooterBar from './FooterBar';
+import Breadcrumb from 'components/breadcrumb/Breadcrumb';
 
-  import HeaderBar from './HeaderBar';
-  import AsideBar from './AsideBar';
-  import FooterBar from './FooterBar';
-  import Breadcrumb from 'components/breadcrumb/Breadcrumb';
-
-  export default {
-    components: {
-      HeaderBar,
-      FooterBar,
-      AsideBar,
-      Breadcrumb
-    },
-    data () {
-      return {
-        initDone: false
-      };
-    },
-    methods: {
-      handleInitMainDone() {
-        this.initDone = true;
-      }
-    },
-    created() {
-    },
-    mounted() {
+export default {
+  components: {
+    HeaderBar,
+    FooterBar,
+    AsideBar,
+    Breadcrumb
+  },
+  data () {
+    return {
+      initDone: false
+    };
+  },
+  methods: {
+    handleInitMainDone() {
+      this.initDone = true;
     }
-  };
+  },
+  created() {
+  },
+  mounted() {
+  }
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
