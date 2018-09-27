@@ -5,7 +5,6 @@ const token = require('../framework').$token;
 const sc = new ServiceClient();
 const _ = require('underscore');
 
-
 exports.pages = {
 
 };

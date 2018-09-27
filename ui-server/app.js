@@ -1,16 +1,16 @@
 /**
  * Created by gavin on 17/6/16.
  */
-const express     = require('express');
-const expressExt  = require('./middlewares/express.ext');
-const bodyParser  = require('body-parser');
-const morgan      = require('morgan');
-const mongoose    = require('mongoose');
-const jwt         = require('jsonwebtoken'); // 使用jwt签名
-const mwError     = require('./middlewares/error');
-const fileUpload  = require('express-fileupload');
-const routes      = require('./routes');
-const logger      = require('./framework').$logger;
+const express = require('express');
+const expressExt = require('./middlewares/express.ext');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken'); // 使用jwt签名
+const mwError = require('./middlewares/error');
+const fileUpload = require('express-fileupload');
+const routes = require('./routes');
+const logger = require('./framework').$logger;
 
 const conf = global.conf || require('./conf');
 global.logger = logger.build(conf.log_setting.default);

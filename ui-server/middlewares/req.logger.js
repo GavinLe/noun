@@ -2,9 +2,8 @@
  * request wrapper
  */
 const wrapLogger = (opt = {logger: null}) => {
-
   return (req, resp, next) => {
-    if(req.logger) return next();
+    if (req.logger) return next();
     try {
       const logger = opt.logger || global.logger;
 
@@ -29,7 +28,7 @@ const wrapLogger = (opt = {logger: null}) => {
     } catch (e) {
       req.logger = global.logger;
     }
-  }
+  };
 };
 
 exports.wrapLogger = wrapLogger;

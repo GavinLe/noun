@@ -8,7 +8,7 @@ let handleExcel = {
     let banner = {};
     _.each(_options.banner, (bValue, rowIdx) => {
       const key = `${handleExcel.getXlsxPosition(0)}${rowIdx + offset}`;
-      banner[key] =  {v: bValue};
+      banner[key] = {v: bValue};
     });
     offset = _options.banner.length + 1;
 
@@ -16,7 +16,7 @@ let handleExcel = {
     let header = {};
     _.each(_headers, (item, colIdx) => {
       const key = `${handleExcel.getXlsxPosition(colIdx)}${offset}`;
-      header[key] =  {v: item.title};
+      header[key] = {v: item.title};
     });
     offset = offset + 1;
 
@@ -32,10 +32,10 @@ let handleExcel = {
         if (headerItem.formatter == 'money') {
           valueObj['t'] = 'n';
           valueObj['z'] = '#,##0.00';
-        }else if (headerItem.formatter == 'num') {
+        } else if (headerItem.formatter == 'num') {
           valueObj['t'] = 'n';
           valueObj['z'] = '#,##0';
-        }else if (headerItem.formatter == 'percent') {
+        } else if (headerItem.formatter == 'percent') {
           valueObj['t'] = 'n';
           valueObj['z'] = '0.00%';
         }

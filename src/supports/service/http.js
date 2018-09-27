@@ -70,9 +70,9 @@ class Http {
   };
 
   async request(options) {
-    options = options ? options : {};
+    options = options || {};
     options.retrieveCount = (options.retrieveCount || 0) + 1;
-    options.showLoading = (options.showLoading == null)?true:options.showLoading;
+    options.showLoading = (options.showLoading == null) ? true:options.showLoading;
     options.skipToken = options.skipToken || false;
     options.skipUser = options.skipUser || false;
     options = $httpHelper.setDefaultHeaders(options);
@@ -135,7 +135,7 @@ class Http {
   };
 
   get(url, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'GET';
     options.url = url;
     if (options.hasOwnProperty('params')) {
@@ -148,7 +148,7 @@ class Http {
   };
 
   post(url, data, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'POST';
     options.url = url;
     options.data = data;
@@ -160,7 +160,7 @@ class Http {
       let getParams = _paramify(params);
       url += `?${getParams}`;
     }
-    options = options ? options : {};
+    options = options || {};
     options.method = 'POST';
     options.url = url;
     options.data = data;
@@ -168,7 +168,7 @@ class Http {
   };
 
   put(url, data, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'PUT';
     options.url = url;
     options.data = data;
@@ -176,7 +176,7 @@ class Http {
   };
 
   patch(url, data, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'PATCH';
     options.url = url;
     options.data = data;
@@ -184,20 +184,20 @@ class Http {
   };
 
   delete(url, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'DELETE';
     options.url = url;
     return this.request(options);
   };
 
   postForm(url, data, options) {
-    options = options ? options : {};
+    options = options || {};
     options.method = 'POST';
-    options.headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    options.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     options.url = url;
     options.data = _paramify(data);
     return this.request(options);
   };
 };
 
-export default new Http;
+export default new Http();

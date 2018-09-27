@@ -50,7 +50,7 @@ const simpleGoTo = (targetUrl) => {
     const rst = await sc.postQuery(targetUrl, req.body, params, {response: res});
     return res.json(rst);
   });
-}
+};
 
 const getGoTo = (targetUrl) => {
   return _wrap(async (req, res, next) => {
@@ -58,7 +58,7 @@ const getGoTo = (targetUrl) => {
     const rst = await sc.get(targetUrl, param, { response: res });
     return res.send(rst);
   });
-}
+};
 
 const postGoTo = (targetUrl) => {
   return _wrap(async (req, res, next) => {
@@ -66,7 +66,7 @@ const postGoTo = (targetUrl) => {
     const rst = await sc.post(targetUrl, data, { response: res });
     return res.json(rst);
   });
-}
+};
 
 const postQueryGoTo = (targetUrl) => {
   return _wrap(async (req, res, next) => {
@@ -75,7 +75,7 @@ const postQueryGoTo = (targetUrl) => {
     const rst = await sc.postQuery(targetUrl, data, params, { response: res });
     return res.json(rst);
   });
-}
+};
 
 module.exports = {
   wrap: _wrap,

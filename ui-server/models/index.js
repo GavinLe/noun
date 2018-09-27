@@ -5,5 +5,5 @@
 const {JsonResult, JsonResultSuccess, JsonResultFailed} = require('./JsonResult');
 
 module.exports = {
-    JsonResult, JsonResultSuccess, JsonResultFailed
+  JsonResult, JsonResultSuccess, JsonResultFailed
 };

@@ -10,26 +10,26 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        levelList: null
-      };
-    },
-    watch: {
-      $route() {
-        this.getBreadcrumb();
-      }
-    },
-    methods: {
-      getBreadcrumb() {
-        this.levelList = this.$route.matched.filter(item => item.name);
-      }
-    },
-    created() {
+export default {
+  data() {
+    return {
+      levelList: null
+    };
+  },
+  watch: {
+    $route() {
       this.getBreadcrumb();
     }
-  };
+  },
+  methods: {
+    getBreadcrumb() {
+      this.levelList = this.$route.matched.filter(item => item.name);
+    }
+  },
+  created() {
+    this.getBreadcrumb();
+  }
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

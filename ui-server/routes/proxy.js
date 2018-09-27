@@ -50,7 +50,7 @@ var wrap_proxy = function (app) {
         changeOrigin: true
       };
     }
-    app.use(proxy(options.filter || context, options))
+    app.use(proxy(options.filter || context, options));
   });
 };
 

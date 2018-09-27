@@ -13,12 +13,11 @@ const DEFAULT_OPTS = {
       '%s\t%s\t%s %s',
       options.timestamp ? options.timestamp() : moment().format('YYYY-MM-DD hh:mm:ss'),
       options.level.toUpperCase(),
-      options.message || '' ,
-      options.meta && Object.keys(options.meta).length ? ( options.meta.stack || JSON.stringify(options.meta) ): ''
+      options.message || '',
+      options.meta && Object.keys(options.meta).length ? (options.meta.stack || JSON.stringify(options.meta)) : ''
     );
   }
 };
-
 
 class Logger {
   constructor(transportOpts) {
@@ -43,13 +42,13 @@ class Logger {
   build(transportOpts) {
     const self = this;
     const transports = _.map(transportOpts, (opt) => {
-      return self.buildTransport(opt)
+      return self.buildTransport(opt);
     });
 
     return winston.createLogger({
-      transports: transports,
+      transports: transports
       // exitOnError: false
-    })
+    });
   };
 
   buildRawFileLogger(opts) {
@@ -72,7 +71,7 @@ class Logger {
       transports: [
         new (winston.transports.File)(newOpts)
       ]
-    })
+    });
   };
 }
 

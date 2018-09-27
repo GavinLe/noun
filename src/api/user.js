@@ -9,7 +9,7 @@ class UserApi {
     options = options || {};
     let loginParams = { username: args.username, password: args.password };
     return $fetch.postForm('/noun/api/login', loginParams, options).then(rst => {
-        return {errcode: 0, data: rst};
+      return {errcode: 0, data: rst};
     });
   };
 

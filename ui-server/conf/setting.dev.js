@@ -21,8 +21,8 @@ const conf = {
 
 conf.log_setting = {
   default: [{
-      type: 'Console',
-      level: 'debug'
+    type: 'Console',
+    level: 'debug'
   }]
 };
 

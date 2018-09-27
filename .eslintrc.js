@@ -28,7 +28,7 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'semi': ['error', 'always'],
-    'indent': 0,
+    'indent': 2,
     'space-before-function-paren': 0,
     'no-unused-vars': 0,
     'no-throw-literal': 0,
@@ -36,6 +36,8 @@ module.exports = {
     'prefer-promise-reject-errors': 0,
     'no-undef': 0,
     'no-new-func': 0,
-    "eqeqeq": 0
+    "eqeqeq": 0,
+    "no-console": 0, // 禁止使用 console
+    "max-params": [0, 3],//函数最多只能有3个参数
   }
 }

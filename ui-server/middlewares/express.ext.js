@@ -15,7 +15,7 @@ const extendExpress = (express, fn_set_locals) => {
     let req = this.req;
     let app = req.app;
     // support callback function as second arg
-    if ('function' == typeof opt) {
+    if (typeof opt == 'function') {
       fn = opt;
       options = {};
     }
@@ -26,9 +26,9 @@ const extendExpress = (express, fn_set_locals) => {
 
     // default callback to respond
     fn = fn || function(err, str) {
-        if (err) return req.next(err);
-        self.send(str);
-      };
+      if (err) return req.next(err);
+      self.send(str);
+    };
     // render
     app.render(view, options, fn);
   };

@@ -32,7 +32,7 @@ exports.preauth = function() {
     } catch (e) {
       return res.json_error('访问令牌不存在！', 990);
     }
-  }
+  };
 };
 
 exports.userRequired = function(req, res, next) {

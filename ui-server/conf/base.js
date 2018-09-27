@@ -36,7 +36,7 @@ const conf = {
     host: '127.0.0.1',
     port: 6379,
     retryStrategy: function (times) {
-      var delay = Math.min(times * 5, 2000)
+      var delay = Math.min(times * 5, 2000);
       return delay;
     }
   },
@@ -75,7 +75,7 @@ conf.docker_log_setting = {
           level: obj.level,
           message: obj.message
         };
-        if(obj.stack) rst.stack = obj.stack;
+        if (obj.stack) rst.stack = obj.stack;
         return JSON.stringify(rst);
       }
     }

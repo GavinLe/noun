@@ -26,5 +26,4 @@
     }
     exports.vx = vx;
   }
-
 }).call(this);

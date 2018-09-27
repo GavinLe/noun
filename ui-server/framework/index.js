@@ -7,8 +7,11 @@ const $RedisClient = require('./redis_client.js');
 const $vx = require('./vx.js');
 
 module.exports = {
-  $logger, $thenBy,
-  $listener, $token,
-  $ServiceClient, $RedisClient,
+  $logger,
+  $thenBy,
+  $listener,
+  $token,
+  $ServiceClient,
+  $RedisClient,
   $vx
 };

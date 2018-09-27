@@ -48,7 +48,7 @@ class ServiceClient {
     }
   }
 
-   _paramify(obj) {
+  _paramify(obj) {
     var str = '';
     for (var key in obj) {
       if (str !== '') {
@@ -206,5 +206,3 @@ class ServiceClient {
 };
 
 module.exports = ServiceClient;
-
-

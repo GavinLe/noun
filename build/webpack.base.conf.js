@@ -1,14 +1,14 @@
-'use strict'
-const path = require('path')
-const utils = require('./utils')
-const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
+'use strict';
+const path = require('path');
+const utils = require('./utils');
+const config = require('../config');
+const vueLoaderConfig = require('./vue-loader.conf');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 const webpack = require('webpack');
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 
 const createLintingRule = () => ({
@@ -21,7 +21,7 @@ const createLintingRule = () => ({
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
-})
+});
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -115,4 +115,4 @@ module.exports = {
       loaders: [ 'vue-loader' ]
     })
   ]
-}
+};

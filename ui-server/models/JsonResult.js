@@ -34,7 +34,6 @@ class JsonResultFailed extends JsonResult {
   }
 }
 
-
 exports.JsonResult = JsonResult;
 exports.JsonResultSuccess = JsonResultSuccess;
 exports.JsonResultFailed = JsonResultFailed;

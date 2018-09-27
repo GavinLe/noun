@@ -134,7 +134,7 @@ class BaseLookup {
     var rst = [];
     var lists = this.getList();
     lists.forEach(function(item) {
-      if ( (codes.indexOf(item.Code)) > -1 ) {
+      if ((codes.indexOf(item.Code)) > -1) {
         rst.push(item.DisplayName);
       }
     });
@@ -145,7 +145,7 @@ class BaseLookup {
   getUISelectionList(inList) {
     var newList = [];
 
-    var list = inList ?inList: this.getList();
+    var list = inList || this.getList();
     for (var i in list) {
       var item = list[i];
       newList.push({
@@ -153,47 +153,46 @@ class BaseLookup {
         value: item.Code,
         item: item,
         selected: false
-      })
+      });
     }
 
     return newList;
   }
 
   toCheckSource(lists) {
-    return new CheckHelper(lists?lists:this.getList());
+    return new CheckHelper(lists || this.getList());
   }
-
 }
 
-class CheckHelper extends BaseLookup{
+class CheckHelper extends BaseLookup {
   constructor(lists, initValue) {
     super();
     this._lists = lists;
-    if(initValue){
+    if (initValue) {
       this.setSelected(initValue);
     }
   }
 
-  setSelected(v){
-    this._lists.forEach(function(item){
-      if( (item.Code & v) == item.Code){
+  setSelected(v) {
+    this._lists.forEach(function(item) {
+      if ((item.Code & v) == item.Code) {
         item.selected = true;
       }
     });
   }
 
   setUNSelect(v) {
-    this._lists.forEach(function(item){
-      if( (item.Code & v) > 0){
+    this._lists.forEach(function(item) {
+      if ((item.Code & v) > 0) {
         item.selected = false;
       }
     });
   }
 
-  getSelectedNames(v){
+  getSelectedNames(v) {
     var rst = [];
     var list = this.getSelectedLists(v);
-    list.forEach(function(item){
+    list.forEach(function(item) {
       rst.push(item.DisplayName);
     });
     return rst;
@@ -201,24 +200,23 @@ class CheckHelper extends BaseLookup{
 
   getSelectedLists(v) {
     var rst = [];
-    this._lists.forEach(function(item){
-      if(!v && v != 0){
-        if( item.selected ){
+    this._lists.forEach(function(item) {
+      if (!v && v != 0) {
+        if (item.selected) {
           rst.push(item);
         }
-      }else{
-        if( (item.Code & v) > 0 ){
+      } else {
+        if ((item.Code & v) > 0) {
           rst.push(item);
         }
       }
-
     });
     return rst;
   }
 
-  getSelectedValue(){
+  getSelectedValue() {
     var v = 0;
-    this._lists.forEach(function(item){
+    this._lists.forEach(function(item) {
       if (item.selected) {
         v = v | item.Code;
       }
